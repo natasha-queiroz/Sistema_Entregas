@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Controle de Entregas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1>Controle de Entregas</h1>
+            <p>Acesse sua conta para continuar.</p>
+            <p id="login-message"></p>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Usuário (ex: motoboy1)" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Senha (ex: senha123)" required>
+            </div>
+            <button id="login-button">Entrar</button>
+            <p id="login-error" class="error-message"></p>
+            <p class="toggle-form">Não tem uma conta? <a href="#" id="show-register">Cadastre-se</a></p>
+        </div>
+
+        <div id="register-container" class="login-container" style="display: none;">
+            <img src="logo.png" alt="Logo" class="logo">
+            <h1>Criar Conta</h1>
+            <p>Preencha os dados para criar sua conta.</p>
+            <div class="input-group">
+                <input type="text" id="new-username" placeholder="Escolha um nome de usuário" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="new-password" placeholder="Crie uma senha" required>
+            </div>
+             <div class="input-group">
+                <input type="password" id="confirm-password" placeholder="Confirme a senha" required>
+            </div>
+            <button id="register-button">Cadastrar</button>
+            <p id="register-error" class="error-message"></p>
+            <p class="toggle-form">Já tem uma conta? <a href="#" id="show-login">Faça login</a></p>
+        </div>
+    </div>
+
+    <div id="app-screen" class="screen">
+        <header>
+            <img src="logo.png" alt="Logo" class="logo-header">
+            <div class="header-content">
+                <h2>Olá, <span id="driver-name"></span>!</h2>
+                <p>Pronto para registrar suas entregas?</p>
+            </div>
+            <button id="logout-button" title="Sair"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </header>
+
+        <main>
+            <div id="registration-section" class="card">
+                <h3><i class="fa-solid fa-box-open"></i> Registrar Nova Entrega</h3>
+                <form id="delivery-form">
+                    <div class="form-group">
+                        <label for="company-type">Tipo de Empresa</label>
+                        <select id="company-type" required>
+                            <option value="Varejo">Varejo</option>
+                            <option value="Atacado">Atacado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="delivery-status">Status da Entrega</label>
+                        <select id="delivery-status" required>
+                            <option value="Entregue">✅ Entregue</option>
+                            <option value="Devolvida">↩️ Devolvida</option>
+                            <option value="Em andamento">🚚 Em andamento</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Observações</label>
+                        <textarea id="notes" rows="3" placeholder="Ex: Cliente ausente, portaria não recebe..."></textarea>
+                    </div>
+                    <button type="submit" id="register-delivery-button">
+                        <span class="button-text">Registrar</span>
+                        <span class="loader" style="display: none;"></span>
+                    </button>
+                    <p id="registration-error" class="error-message"></p>
+                </form>
+            </div>
+
+            <div id="history-section" class="card">
+                <h3><i class="fa-solid fa-list-check"></i> Histórico de Entregas</h3>
+                <div id="filters">
+                    <div class="form-group">
+                        <label for="filter-status">Status</label>
+                        <select id="filter-status">
+                            <option value="all">Todos</option>
+                            <option value="Entregue">Entregue</option>
+                            <option value="Devolvida">Devolvida</option>
+                            <option value="Em andamento">Em andamento</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filter-company">Empresa</label>
+                        <select id="filter-company">
+                            <option value="all">Todas</option>
+                            <option value="Varejo">Varejo</option>
+                            <option value="Atacado">Atacado</option>
+                        </select>
+                    </div>
+                     <div class="form-group">
+                        <label for="filter-driver">Entregador</label>
+                        <select id="filter-driver">
+                            <option value="all">Todos</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="delivery-history">
+                    <p class="no-history">Nenhuma entrega registrada ainda.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script type="module" src="script.js"></script>
+</body>
+</html>
