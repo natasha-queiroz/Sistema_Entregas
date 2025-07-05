@@ -139,6 +139,8 @@ header {
 
 .header-content {
     text-align: center;
+    flex-grow: 1;
+    margin: 0 1rem;
 }
 
 header h2 {
@@ -146,12 +148,14 @@ header h2 {
     font-weight: 500;
 }
 
-#logout-button {
+#logout-button,
+.header-nav-button {
     background: transparent;
     border: none;
     color: white;
     font-size: 1.5rem;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 main {
@@ -177,6 +181,20 @@ main {
 .card h3 i {
     margin-right: 0.5rem;
     color: var(--secondary-color);
+}
+
+#navigation-card {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+#navigation-card button {
+    background-color: var(--primary-color);
+}
+
+#navigation-card button:hover {
+    background-color: #34495e;
 }
 
 /* --- Forms --- */
