@@ -85,8 +85,23 @@
                 </form>
             </div>
 
-            <div id="history-section" class="card">
-                <h3><i class="fa-solid fa-list-check"></i> Histórico de Entregas</h3>
+            <div id="navigation-card" class="card">
+                 <button id="view-history-button"><i class="fa-solid fa-list-check"></i> Ver Histórico de Entregas</button>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="history-screen" class="screen">
+        <header>
+            <button id="back-to-app-button" class="header-nav-button" title="Voltar"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="header-content">
+                <h2>Histórico de Entregas</h2>
+            </div>
+            <button id="logout-button-history" class="header-nav-button" title="Sair"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </header>
+        <main>
+             <div id="history-section" class="card">
                 <div id="filters">
                     <div class="form-group">
                         <label for="filter-status">Status</label>
