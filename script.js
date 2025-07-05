@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Elements ---
     const loginScreen = document.getElementById('login-screen');
     const appScreen = document.getElementById('app-screen');
+    const historyScreen = document.getElementById('history-screen');
     
     // Login form
     const loginContainer = document.querySelector('.login-container');
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // App screen
     const logoutButton = document.getElementById('logout-button');
     const driverNameSpan = document.getElementById('driver-name');
+    const viewHistoryButton = document.getElementById('view-history-button');
     
     const deliveryForm = document.getElementById('delivery-form');
     const registerDeliveryButton = document.getElementById('register-delivery-button');
@@ -41,6 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const notesTextarea = document.getElementById('notes');
     const registrationError = document.getElementById('registration-error');
     
+    // History screen
+    const backToAppButton = document.getElementById('back-to-app-button');
+    const logoutButtonHistory = document.getElementById('logout-button-history');
     const historyContainer = document.getElementById('delivery-history');
     const filterStatus = document.getElementById('filter-status');
     const filterCompany = document.getElementById('filter-company');
@@ -77,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filteredDeliveries.forEach(delivery => {
             const item = document.createElement('div');
-            const statusClass = delivery.status.replace(/\s+/g, '.');
+            const statusClass = delivery.status.replace(/\s+/g, '-').toLowerCase();
             item.className = `delivery-item status-${statusClass}`;
             
             const localDateTime = new Date(delivery.timestamp).toLocaleString('pt-BR');
@@ -145,6 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('currentUser');
         passwordInput.value = '';
         showScreen(loginScreen);
+        // Ensure only login form is visible on logout
+        loginContainer.style.display = 'block';
+        registerContainer.style.display = 'none';
         clearLoginMessages();
     };
 
@@ -275,7 +283,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     logoutButton.addEventListener('click', logout);
+    logoutButtonHistory.addEventListener('click', logout);
     deliveryForm.addEventListener('submit', handleDeliveryRegistration);
+
+    viewHistoryButton.addEventListener('click', () => {
+        renderDeliveries(); // Refresh history when viewing
+        showScreen(historyScreen);
+    });
+
+    backToAppButton.addEventListener('click', () => {
+        showScreen(appScreen);
+    });
 
     [filterStatus, filterCompany, filterDriver].forEach(filter => {
         filter.addEventListener('change', renderDeliveries);
